@@ -45,7 +45,12 @@ int main() {
                     active_builder->AddPoint(Point{(double) mouse_button_event.x(), (double) mouse_button_event.y()});
                     if (dynamic_cast<RandomPolygonFactory*>(active_builder.get()) == nullptr
                         &&  dynamic_cast<LineFactory*>(active_builder.get()) == nullptr) {
-                        std::shared_ptr<Figure> new_figure = active_builder->TryCreateObject();
+                        std::shared_ptr<Figure> new_figure = nullptr;
+                        try {
+                            new_figure = active_builder->TryCreateObject();
+                        } catch (...) {
+                            active_builder = nullptr;
+                        }
                         if (new_figure) {
                             redactor.InsertFigure(new_figure);
                             active_builder = nullptr;

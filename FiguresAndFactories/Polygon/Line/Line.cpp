@@ -30,5 +30,14 @@ void Line::Load(std::istream &is) {
 }
 
 bool Line::PointBelongsTo(Point p) const {
+
+    for (size_t i = 0; i < points_.size() - 1; ++i) {
+        Point p1 = points_[i];
+        Point p2 = points_[i + 1];
+        Vector line(p1,p2);
+        if (is_parallel(line, Vector(p2, p)) && Vector(p,p1).length() <= line.length() && Vector(p,p2).length() <= line.length() ) {
+            return true;
+        }
+    }
     return false;
 }
