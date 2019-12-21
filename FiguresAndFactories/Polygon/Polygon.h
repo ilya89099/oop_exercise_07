@@ -9,7 +9,7 @@ public:
     Polygon(int points_count);
     Polygon(const std::vector<Point>& points);
     virtual void Render(const sdl::renderer& renderer) const override;
-    bool PointBelongsTo(Point p) const override;
+    virtual bool PointBelongsTo(Point p) const override;
 
 protected:
     std::vector<Point> points_;

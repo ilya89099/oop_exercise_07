@@ -28,3 +28,7 @@ void Line::Load(std::istream &is) {
         is >> points_[i];
     }
 }
+
+bool Line::PointBelongsTo(Point p) const {
+    return false;
+}
